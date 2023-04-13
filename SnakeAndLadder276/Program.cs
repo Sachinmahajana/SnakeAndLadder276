@@ -7,60 +7,80 @@ namespace SnakeAndLadder276
         public const int SNAKE = 2;
         public const int LADDER = 1;
         public const int NOPLYER = 0;
-        public const int TotalDiceCount = 0;
-
-        static void Main(string[] args)
+        public const int Player1 = 1;
+        public const int Player2 = 2;
+        public const int Dice = 0;
+        public static int positionCheck(int Dice, int position, int optionCheck)
         {
+            if ((optionCheck == LADDER) && (position + Dice) <= 100)
             {
-                int PlayerPosition = 0;
-                int start = 0;
-                Console.WriteLine("Start Position:" + start);
-                while (PlayerPosition < 100)
+                Console.WriteLine("Ladder");
+                position = position + Dice;
+            }
+
+            else if (optionCheck == SNAKE)
+            {
+                Console.WriteLine("Snake");
+                position = position - Dice;
+            }
+            else
+            {
+                Console.WriteLine("No Play");
+            }
+            if (position < 0)
+                position = 0;
+            Console.WriteLine("position: " + position);
+            return position;
+        }
+        static void Main(String[] args)
+        {
+            int playerOnePosition = 0;
+            int playerTwoPosition = 0;
+            int player = Player1;
+            Console.WriteLine("playerOnePosition: " + playerOnePosition);
+            Console.WriteLine("playerTwoPosition: " + playerTwoPosition);
+            Random ran = new Random();
+            while ((playerOnePosition < 100) && (playerTwoPosition < 100))
+            {
+                int dice = ran.Next(0, 7);
+                Console.WriteLine("dice: " + dice);
+                ++dice;
+                int optionCheck = ran.Next(0, 3);
+                Console.WriteLine("optionCheck: " + optionCheck);
+
+                if (player == Player1)
                 {
-                    Random random = new Random();
-                    int roll = random.Next(0, 7);
-                    Console.WriteLine("After Rolling a dice" + roll);
-                    ++roll;
-                    int Option = random.Next(0, 3);
-                    Console.WriteLine("Option is " + Option);
-                    Console.ReadLine();
-                    if (Option == SNAKE)
+                    playerOnePosition = positionCheck(dice, playerOnePosition, optionCheck);
+                    if ((optionCheck == SNAKE) || (optionCheck == NOPLYER))
                     {
-                        PlayerPosition = PlayerPosition - roll;
-                        Console.WriteLine("snake " + PlayerPosition);
+                        player = Player2;
+                        Console.WriteLine("player is:" + player);
                     }
-                    else if (Option == LADDER && (PlayerPosition + roll) < 100)
+                }
+                else if (player == Player2)
+                {
+                    playerTwoPosition = positionCheck(dice, playerTwoPosition, optionCheck);
+                    if ((optionCheck == SNAKE) || (optionCheck == NOPLYER))
                     {
-                        PlayerPosition = PlayerPosition + roll;
-                        Console.WriteLine("ladder " + PlayerPosition);
-
+                        player = Player1;
+                        Console.WriteLine("player is" + player);
                     }
-                    else
-                    {
-                        Console.WriteLine("no play " + PlayerPosition);
-                    }
-                    if (PlayerPosition <= 100)
-                    {
-                        PlayerPosition = PlayerPosition + roll;
-                    }
-                    if (PlayerPosition <= 0)
-                    {
-                        PlayerPosition = PlayerPosition - roll;
-                        Console.WriteLine("Player Position" + PlayerPosition);
-                        Console.WriteLine("Dice Count " + roll);
-                    }
-                    else if (PlayerPosition == 100)
-                    {
-                        Console.WriteLine("player has won");
-                        Console.ReadLine();
-                        break; 
-                    }
-                    int TotalDiceCountroll = +roll;            
-                    Console.WriteLine("Total Dice Count Played to win the game:" + TotalDiceCount);
-
-                    Console.ReadLine();
                 }
             }
+            Console.ReadLine();
+            Console.WriteLine("Player One Position: " + playerOnePosition);
+            Console.WriteLine("Player Two Position" + playerTwoPosition);
+            Console.WriteLine("diceCount: " + Dice);
+            if (playerOnePosition == 100)
+            {
+                Console.WriteLine("Player One Wins");
+            }
+            else
+            {
+                Console.WriteLine("Player Two Wins");
+            }
+            Console.ReadLine();
+
         }
     }
 }
