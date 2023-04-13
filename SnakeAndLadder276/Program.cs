@@ -2,6 +2,9 @@
 {
     internal class Program
     {
+
+
+
         static void Main(string[] args)
         {
             Console.WriteLine("Welcome to the Snake and Ladder Program");
@@ -29,6 +32,7 @@
                 start = start + roll;
                 Console.WriteLine("You Got : " + roll);
                 Console.WriteLine("Player position at : " + start);
+                Console.WriteLine("After Rolling a dice" + roll);
                 //UC3-Checkplayer Position
                 int Option = random.Next(0, 3);
                 Console.WriteLine("Option is " + Option);
