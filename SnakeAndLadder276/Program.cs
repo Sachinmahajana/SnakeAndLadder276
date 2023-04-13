@@ -13,9 +13,7 @@
             //UC2-Diceroll
             Random random = new Random();
             int roll = random.Next(0, 7);
-            start = start + roll;
-            Console.WriteLine("You Got : " + roll);
-            Console.WriteLine("Player position at : " + start);
+            Console.WriteLine("After Rolling a dice" + roll);
             //UC3-Checkplayer Position
             int Option = random.Next(0, 3);
             Console.ReadLine();
