@@ -9,7 +9,19 @@
             int PlayerPosition = 0;
             int start = 0;
             Console.WriteLine("Start Position:" + start);
+<<<<<<< HEAD
             while (PlayerPosition < 100)
+=======
+
+            //UC2-Diceroll
+            Random random = new Random();
+            int roll = random.Next(0, 7);
+            Console.WriteLine("After Rolling a dice" + roll);
+            //UC3-Checkplayer Position
+            int Option = random.Next(0, 3);
+            Console.ReadLine();
+            if (Option == 0)
+>>>>>>> UC3-Checkplayerposition
             {
                 //UC2-Diceroll
                 Random random = new Random();
